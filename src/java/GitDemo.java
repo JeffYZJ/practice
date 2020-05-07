@@ -6,6 +6,6 @@ public class GitDemo {
         int b = 2;
         String string = "Test";
         String nextStr = "Commit进行对比哈哈哈";
-        System.out.println("int number");
+        System.out.println("int number 1123344");
     }
 }
