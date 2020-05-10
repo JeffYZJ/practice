@@ -24,8 +24,13 @@ public class firstLambda {
         lambdaArray(strArray);
         labmbdUserDto();
         labmbdGetArea(radioArray);
+        labmbdAnyMatch();
     }
-
+    private static void labmbdAnyMatch() {
+        List<String> list = Arrays.asList("aaa","bbb","ccc");
+        boolean isFound = list.stream().anyMatch(tempStr -> tempStr.indexOf("a") > -1);
+        System.out.println(isFound);
+    }
     private static void labmbdGetArea(Double[] radioArray) {
         List<Double> radioList = Arrays.asList(radioArray);
         radioList.stream()
@@ -35,24 +40,37 @@ public class firstLambda {
 
     }
 
+    /**
+     * labmbd集合处理
+     */
     private static void labmbdUserDto() {
         UserDTO userDTO1 = new UserDTO("yinzijian", "qwe123", 1L);
         UserDTO userDTO2 = new UserDTO("shijiawei", "qwe123", 2L);
         List<UserDTO> userDTOList = new ArrayList<>();
+//        paraMap.computeIfAbsent(configId, key -> new ArrayList<FIApprovalParaService>()).add(paraValue);
         userDTOList.add(userDTO1);
         userDTOList.add(userDTO2);
         userDTOList.stream()
                 .map(user -> user.getUserId())
+                .filter(tempStr -> tempStr.equals("123"))
                 .collect(Collectors.toList())
                 .forEach(id -> System.out.println(id));
     }
 
+    /**
+     * lambda表达式排序
+     * @param strArray
+     */
     private static void lambdaArray(String[] strArray) {
         Arrays.sort(strArray, (a, b) -> a.compareToIgnoreCase(b));
         System.out.println(Arrays.toString(strArray));
 
     }
 
+    /**
+     * lambda表达式线程
+     * @param threadName
+     */
     private static void lambdaThread(String threadName) {
         new Thread(() ->{
             System.out.println("线程名字："+ threadName);
