@@ -1,3 +1,9 @@
+
+
+
+import dto.UserDTO;
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -9,14 +15,30 @@ public class firstOptional {
     public static void main(String[] args) {
 
 
-        optionalOne(50);
-        optionalTwo(1000);
+        optionalOne(null);
+        optionalTwo(null);
+        optionalThree();
+
+    }
+
+    /**
+     * 结合DTO使用
+     */
+    private static void optionalThree() {
+        UserDTO userDTO1 = new UserDTO("yinzijian", "qwe123", 1L);
+        UserDTO userDTO2 = new UserDTO("shijiawei", "qwe123", 2L);
+        UserDTO dto = Optional.ofNullable(userDTO1)
+                .orElse(userDTO2)
+                ;
+        Optional<UserDTO> userDTOOptional = Optional.ofNullable(userDTO1)
+                .filter(u -> u.getUserCode() != null);
+        userDTOOptional.get();
     }
 
 
     /**
      * 保证值合法
-     * @param i
+     * @param value
      */
     private static void optionalTwo(Integer value) {
         int thisValue = Optional.ofNullable(value).filter(tempValue -> tempValue.compareTo(MAX_VALUE) <= 0).orElse(DEFAULT_VALUE);
@@ -28,6 +50,7 @@ public class firstOptional {
      * 保证值存在
      * @param value
      */
+    @Test
     private static void optionalOne(Integer value) {
         int thisValue = Optional.ofNullable(value).orElse(DEFAULT_VALUE);
         System.out.println(thisValue);
