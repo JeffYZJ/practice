@@ -10,15 +10,12 @@ public class TestJava {
         map.put(t1, "1");
         map.put(t2, "2");
         map.clear();
-
-//        t1 = null;
         System.gc();
-        Thread.sleep(5000);
-        System.out.println("第1步" + t1.toString());
+        System.out.println("第1步" + t1);
 
-//        t2 = null;
+        t2 = null;
         System.gc();
-        System.out.println("第2步" + map);
+        System.out.println("第2步" + t2);
 
         System.gc();
         System.out.println("第3步" + map);
