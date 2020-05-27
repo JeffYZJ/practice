@@ -32,7 +32,9 @@ public class firstOptional {
                 ;
         Optional<UserDTO> userDTOOptional = Optional.ofNullable(userDTO1)
                 .filter(u -> u.getUserCode() != null);
-        userDTOOptional.get();
+        if (userDTOOptional.isPresent()){
+            userDTOOptional.get();
+        }
     }
 
 

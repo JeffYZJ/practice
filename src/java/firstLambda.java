@@ -1,9 +1,7 @@
 import dto.UserDTO;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -46,6 +44,8 @@ public class firstLambda {
                 .map(user -> user.getUserId())
                 .collect(Collectors.toList())
                 .forEach(id -> System.out.println(id));
+        userDTOList.stream().collect(Collectors.groupingBy(UserDTO :: getUserCode,
+                TreeMap::new,Collectors.toList()));
 
 
     }
