@@ -22,6 +22,20 @@ public class firstLambda {
         lambdaArray(strArray);
         labmbdUserDto();
         labmbdGetArea(radioArray);
+        labmbdSort();
+    }
+    private static void labmbdSort() {
+        List<Integer> l = new ArrayList();
+        l.add(3);
+        l.add(2);
+        l.add(5);
+        l.add(1);
+        Integer num = l.stream().sorted((l1,l2) ->
+                l1.compareTo(l2)
+        ).findFirst().get();
+//        System.out.println(num);
+        //降序
+        l.stream().sorted((l1,l2) -> l2.compareTo(l1)).collect(Collectors.toList()).forEach(num2 -> System.out.println(num2));
     }
 
     private static void labmbdGetArea(Double[] radioArray) {
@@ -44,7 +58,7 @@ public class firstLambda {
                 .map(user -> user.getUserId())
                 .collect(Collectors.toList())
                 .forEach(id -> System.out.println(id));
-        userDTOList.stream().collect(Collectors.groupingBy(UserDTO :: getUserCode,
+        Map<String,List<UserDTO>> listMap = userDTOList.stream().collect(Collectors.groupingBy(UserDTO :: getUserCode,
                 TreeMap::new,Collectors.toList()));
 
 
