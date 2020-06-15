@@ -1,4 +1,5 @@
-package nioDemo;
+package testnio;
+
 
 import testnio.buffer.Buffers;
 
@@ -90,6 +91,7 @@ public class ServiceSocketChannelDemo {
                                      每个通道在内核中都对应一个socket缓冲区*/
                                 SocketChannel sc = ssc.accept();
                                 sc.configureBlocking(false);
+                                sc.socket().setReuseAddress(true);
 
                                 /*向选择器注册这个通道和普通通道感兴趣的事件，同时提供这个新通道相关的缓冲区*/
                                 int interestSet = SelectionKey.OP_READ;
@@ -129,14 +131,14 @@ public class ServiceSocketChannelDemo {
                                 readBuffer.clear();
 
                                 /*设置通道写事件*/
-                                key.interestOps(key.interestOps() | SelectionKey.OP_WRITE);
+                                key.interestOps(SelectionKey.OP_READ | SelectionKey.OP_WRITE);
 
                             }
 
                             /*通道感兴趣写事件且底层缓冲区有空闲*/
                             if(key.isWritable()){
 
-                                Buffers  buffers = (Buffers)key.attachment();
+                                Buffers buffers = (Buffers)key.attachment();
 
                                 ByteBuffer writeBuffer = buffers.gerWriteBuffer();
                                 writeBuffer.flip();
