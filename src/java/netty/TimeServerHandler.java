@@ -55,6 +55,9 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
         byte[] req = message.getBytes("UTF-8");
         ByteBuf pingMessage = Unpooled.buffer();
         pingMessage.writeBytes(req);
+        while (pingMessage.isReadable()) {
+            System.err.println(pingMessage.readByte());
+        }
 
         return pingMessage;
     }

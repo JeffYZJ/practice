@@ -38,11 +38,10 @@ public class NettyClient {
             bootstrap.remoteAddress(host, port);
             bootstrap.handler(new ChannelInitializer<SocketChannel>() {
                 @Override
-                protected void initChannel(SocketChannel socketChannel)
-                        throws Exception {
+                protected void initChannel(SocketChannel socketChannel) {
                     socketChannel.pipeline().addLast(new LineBasedFrameDecoder(1024));
                     socketChannel.pipeline().addLast(new StringDecoder());
-                    socketChannel.pipeline().addLast(new netty.NettyClientHandler());
+                    socketChannel.pipeline().addLast(new NettyClientHandler());
                 }
             });
             ChannelFuture channelFuture = bootstrap.connect(host, port).sync();

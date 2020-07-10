@@ -6,6 +6,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
+
 /**
  * @author yinzijian
  */
@@ -28,6 +29,23 @@ public class TimeServer {
                         }
                     });
             ChannelFuture f = b.bind(port).sync();
+//            b.bind(port).addListener((ChannelFutureListener) future -> {
+//                    // 检查操作的状态
+//                    if (future.isSuccess()) {
+//                        System.err.println("启动Netty服务成功，端口号：" + port);
+//
+//                        // 如果操作是成功的，则创建一个ByteBuf 以持有数据
+//                        ByteBuf buffer = Unpooled.copiedBuffer("Hello", StandardCharsets.UTF_8);
+//                        // 将数据异步地发送到远程节点。返回一个ChannelFuture
+//                        ChannelFuture wf = future.channel().write(buffer);
+//                        future.channel().closeFuture();
+//                        // ...
+//                    } else {
+//                        // 如果发生错误，则访问描述原因的Throwable
+//                        Throwable cause = future.cause();
+//                        cause.printStackTrace();
+//                    }
+//            });
             if(f.isSuccess()){
                 System.err.println("启动Netty服务成功，端口号：" + port);
             }

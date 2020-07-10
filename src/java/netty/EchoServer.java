@@ -36,7 +36,7 @@ public class EchoServer {
                     ByteBuf  delimiter = Unpooled.copiedBuffer("$_".getBytes());
                     ch.pipeline().addLast(new DelimiterBasedFrameDecoder(1024, delimiter));
                     ch.pipeline().addLast(new StringDecoder());
-                    ch.pipeline().addLast(new EchoServerHandler());
+//                    ch.pipeline().addLast(new EchoServerHandler());
                 }
             });
             ChannelFuture f = b.bind(port).sync();

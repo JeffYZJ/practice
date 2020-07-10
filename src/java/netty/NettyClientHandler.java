@@ -14,7 +14,6 @@ public class NettyClientHandler
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.channel().writeAndFlush(firstMessage);
         for (int i = 0; i < 1000; ++i) {
             byte[] data = ("你好，服务器" + i).getBytes();
             firstMessage = Unpooled.buffer();

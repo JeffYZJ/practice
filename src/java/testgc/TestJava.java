@@ -14,7 +14,7 @@ public class TestJava {
         map.clear();
         System.gc();
 
-        Thread.sleep(5000);
+        t1 = null;
         System.out.println("第1步" + t1);
 
 
